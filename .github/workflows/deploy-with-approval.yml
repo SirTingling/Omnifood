@@ -1,0 +1,26 @@
+# Deployment with Approval Gate — added by Takumo
+# Requires manual approval before deploying to production.
+# Note: You must also create a "production" environment in your repo settings
+# and add required reviewers for the approval gate to take effect.
+# https://docs.github.com/en/actions/deployment/targeting-different-environments
+
+name: Deploy with Approval
+
+on:
+  push:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy
+        run: echo "Deploying to production..."
